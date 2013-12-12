@@ -23,8 +23,9 @@ namespace _12findLettersIndexes
             }
 
             //input a word
-            Console.Write("Enter a word (use only upper-case letters):");
+            Console.Write("Enter a word :");
             string word = Console.ReadLine();
+            word = word.ToUpper();
 
             //
             for (int letterIndex = 0; letterIndex < word.Length; letterIndex++)

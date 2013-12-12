@@ -14,20 +14,20 @@ namespace _15findAllPrimeNumsSieveOfEratosthenesAlgorithm
             //Use the sieve of Eratosthenes algorithm (find it in Wikipedia).
 
             //initialize the array
-            bool[] arr = new bool[10000001];
+            bool[] arr = new bool[104730];
 
             //sieve of Eratosthenes algorithm
-            int prime = 1;
+            long prime = 1;
 
-            for (int index = 1; index < arr.Length; index++)
+            for (long index = 1; index < arr.Length; index++)
             {
                 if (prime < index && arr[index] == false)
                 {
                     Console.Write(" " + index);
                     prime = index;
-                    for (int multiplier = 0; multiplier < arr.Length / prime + 1; multiplier++)
+                    for (long multiplier = prime; multiplier < arr.Length / prime; multiplier++)
                     {
-                        int markIndex = prime * multiplier;
+                        long markIndex = prime * multiplier;
                         arr[markIndex] = true;
                     }
                 }
