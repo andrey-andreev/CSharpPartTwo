@@ -9,13 +9,15 @@ namespace _22ExtractTheNumberOfContainedWords
     {
         static void Main(string[] args)
         {
-            string text = "We are living in an yellow submarine. We don't have anything else. Inside the submarine is very tight. So we are drinking all the day. We will move out of it in 5 days.";
+            string text = @"We are living in an yellow submarine. We don't have anything else. 
+            Inside the submarine is very tight. So we are drinking all the day. We will move out 
+            of it in 5 days.";
             string[] split = text.Split(new Char[] { ' ', ',', '.', ':', '!', '?' });
             for (int index = 0; index < split.Length; index++)
             {
                 if (Regex.IsMatch(split[index], @"^\w+$"))
                 {
-                    int wordNum = Regex.Matches(text, (@"\b" + split[index] + @"\b").ToString()).Count;
+                    int wordNum = Regex.Matches(text, (@"\b" + split[index] + @"\b").ToString(), RegexOptions.IgnoreCase).Count;
                     Console.WriteLine("Word \"{0}\" is found {1} times.", split[index], wordNum);
                     split[index] = String.Empty;
                 }
@@ -24,4 +26,4 @@ namespace _22ExtractTheNumberOfContainedWords
     }
 }
 
-// ignorecase !!!!!!!!
+// TODO: ignorecase !!!!!!!!

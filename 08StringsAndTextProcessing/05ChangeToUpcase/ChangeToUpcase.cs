@@ -17,15 +17,19 @@ namespace _05ChangeToUpcase
         static void Main(string[] args)
         {
             string text = "We are living in a <upcase>yellow submarine</upcase>. We don't have <upcase>anything</upcase> else.";
-            string pattern = @"(?:<upcase>)(.*?)(?:</upcase>)";
-            Regex rgx = new Regex(pattern);
-            string result = String.Empty;
-            //result = Regex.Replace(text, matches, (matches.ToString()).ToUpper());
-            foreach (Match match in rgx.Matches(text))
+
+            int searchingtIndex = 0;
+            string openingTag = "<upcase>";
+            string closingTag = "</upcase>";
+            while (text.IndexOf(openingTag, searchingtIndex) >= 0)
             {
-                result = Regex.Replace(text, match.Value, (match.ToString()).ToUpper());
+                int startIndex = text.IndexOf(openingTag, searchingtIndex) + openingTag.Length;
+                int length = text.IndexOf(closingTag, searchingtIndex) - startIndex;
+                string word = text.Substring(startIndex, length);
+                string tagWord = openingTag + word + closingTag;
+                text = text.Replace(tagWord, word.ToUpper());
             }
-            Console.WriteLine(result);
+            Console.WriteLine(text);
         }
     }
 }

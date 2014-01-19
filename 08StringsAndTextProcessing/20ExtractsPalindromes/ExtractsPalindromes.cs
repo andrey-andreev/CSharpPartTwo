@@ -10,16 +10,31 @@ namespace _20ExtractsPalindromes
         static void Main(string[] args)
         {
             string text = "lamal sadfgsdf abba sdfgdsf exe sdfgdf";
-            string pattern = @"(\w)(?:(?R)|\w?)$1"; // \b(\w)+(\w?|(?R))*($1)\b
-            //string pattern = @"(\w)(?:(?R)|\w?)$1";
-            foreach (Match m in Regex.Matches(text, pattern))
+            string[] words = text.Split(new Char[] { ' ', ',', '.', ':', '!', '?' });
+            for (int wordIndex = 0; wordIndex < words.Length; wordIndex++)
             {
-                Console.WriteLine(m.Value);
+                bool isPalindrome = false;
+                string currentWord = words[wordIndex];
+                for (int ch = 0; ch < currentWord.Length / 2; ch++)
+                {
+                    char currentChar = currentWord[ch];
+                    char mirrorChar = currentWord[currentWord.Length - ch - 1];
+                    if (currentChar != mirrorChar)
+                    {
+                        isPalindrome = false;
+                        break;
+                    }
+                    else
+                    {
+                        isPalindrome = true;
+                    }
+
+                }
+                if (isPalindrome)
+                {
+                    Console.WriteLine(currentWord);
+                }
             }
         }
     }
 }
-
-//http://www.rexegg.com/regex-recursion.html
-//\b(\w)+(\w|(?R))*($1)\b
-//http://forums.academy.telerik.com/56626/c%23-%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%BE-strings-and-text-processing-20-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B0?start=0#a_list_title

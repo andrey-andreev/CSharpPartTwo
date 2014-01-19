@@ -9,7 +9,7 @@ namespace _23RemoveConsecutiveLetters
         static void Main(string[] args)
         {
             string str = "aaaaabbbbbcdddee678eedssaa  dff798";
-            string result = Regex.Replace(str, @"(\w)\1+", @"$1"); //ask why !!!!!!!!!!
+            string result = Regex.Replace(str, @"(\w)\1+", @"$1"); 
             Console.WriteLine(result);
         }
     }
